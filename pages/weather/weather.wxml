@@ -1,0 +1,80 @@
+<!--pages/weather/weather.wxml-->
+<view class="main">
+    <view class="container">
+        <view bindtap="showCityPopup" class="h1">{{currentCity}}
+            <van-icon color="white" name="arrow-down"/>
+        </view>
+        <van-popup
+                show="{{ showCity }}"
+                round
+                position="bottom"
+                custom-style="height: 40%"
+                bind:close="onClose"
+        >
+            <van-area
+                    bind:cancel="onClose"
+                    bind:confirm="chooseCity"
+                    area-list="{{ areaList }}"
+                    columns-num="{{ 2 }}"
+                    value="110101"
+                    title="选择城市"/>
+        </van-popup>
+        <block wx:if="{{ infoShow }}">
+            <view class="today" bindtap="showDetailsPopup">
+                <text class="info">{{weatherInfo.realtime.info}}</text>
+                <view class="temp">{{weatherInfo.realtime.temperature}}<van-icon class="sup" color="white" name="circle" size="25"/>
+                </view>
+            </view>
+        </block>
+        <van-popup
+                show="{{ showDetails }}"
+                round
+                bind:click-overlay="closeOverlay"
+                close-icon-position="top-left"
+        >
+            <view class="details">
+                <van-cell-group>
+                    <van-cell title="湿度" value="{{weatherInfo.realtime.humidity}}"/>
+                    <van-cell title="风向" value="{{weatherInfo.realtime.direct}}"/>
+                    <van-cell title="风力" value="{{weatherInfo.realtime.power}}"/>
+                    <van-cell title="空气指数" value="{{weatherInfo.realtime.aqi}}"/>
+                </van-cell-group>
+            </view>
+        </van-popup>
+        <view class="tomorrow" wx:if="{{ infoShow }}">
+            <text>明天</text>
+            <view>
+                <text>{{weatherInfo.future[0].weather}} {{weatherInfo.future[0].temperature}}</text>
+            </view>
+        </view>
+        <view class="bottom">
+            <view class="week">
+                <block  wx:for="{{weatherInfo.future}}">
+                    <text>{{week.getWeek(item.date)}}</text>
+                </block>
+            </view>
+            <view class="futureInfo">
+                <block  wx:for="{{weatherInfo.future}}">
+                    <text>{{item.temperature}}</text>
+                </block>
+            </view>
+        </view>
+    </view>
+</view>
+<wxs module="week">
+    var getWeek = function (date) {
+        var week = getDate(date).getDay()
+        if (week == 0) week = "日"
+        if (week == 1) week = "一"
+        if (week == 2) week = "二"
+        if (week == 3) week = "三"
+        if (week == 4) week = "四"
+        if (week == 5) week = "五"
+        if (week == 6) week = "六"
+        return week
+    }
+    module.exports = {
+        getWeek: getWeek
+    }
+</wxs>
+

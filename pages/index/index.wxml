@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="container">
+<block wx:for="{{tools}}">
+  <view class="menu-parent-item">
+    <view class="index_h1">{{item.category}}</view>
+    <view class="menu-wrp">
+      <block wx:for="{{item.tackles}}" wx:for-item="tackle_item" wx:for-index="tackle_index">
+        <view class="menu-item" >
+          <navigator hover-class="none" url="/pages/{{tackle_item.ename}}/{{tackle_item.ename}}">
+            <image  class="menu-icon" src="{{tackle_item.imgUrls}}" />
+            <view class="menu-font">{{tackle_item.cname}}</view>
+          </navigator>
+        </view>
+      </block>
+    </view>
+  </view>
+ <view wx:if="{{(parentItem.length-1)!=index}}" class="line"></view>
+</block>
+
+</view>

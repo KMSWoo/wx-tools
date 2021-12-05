@@ -1,0 +1,29 @@
+<!--pages/history/history.wxml-->
+<view>
+    <view class="h1" bindtap="showPicker">{{date}}
+        <van-icon name="arrow-down"/>
+    </view>
+    <view class="info" wx:for="{{historyInfo}}">
+        <block>
+            <van-cell-group>
+                <van-cell icon="clock-o" title="{{item.date}}" center value="{{item.title}}" size="large"/>
+            </van-cell-group>
+        </block>
+    </view>
+    <van-popup
+            show="{{ showPicker }}"
+            round
+            position="bottom"
+            custom-style="height: 40%"
+    >
+        <van-datetime-picker
+                title="选择时间"
+                type="date"
+                value="{{ currentDate }}"
+                min-date="{{ minDate }}"
+                max-date="{{ maxDate }}"
+                bind:cancel = "onClose"
+                bind:confirm = "onDatePicker"
+        />
+    </van-popup>
+</view>

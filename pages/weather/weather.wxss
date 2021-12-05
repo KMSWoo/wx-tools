@@ -1,0 +1,76 @@
+/* pages/weather/weather.wxss */
+.main {
+    background-color: #292421;
+    opacity: .95;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    color: white;
+    user-select: none;
+    position: relative;
+}
+
+.container{
+    width: 80%;
+    margin:20px auto;
+}
+
+.h1 {
+    font-size: 10vw;
+}
+
+.today{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.temp{
+    font-size: 20vh;
+    text-align: center;
+}
+
+.info {
+    margin: 10%;
+}
+
+.sup{
+    vertical-align: text-top;
+}
+
+.details{
+    width: 60vw;
+    padding: 1vw;
+}
+
+
+.tomorrow {
+    height: 10vh;
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.week{
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 5vh auto;
+}
+
+.futureInfo {
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 10vh;
+}

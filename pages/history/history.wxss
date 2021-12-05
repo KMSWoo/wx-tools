@@ -1,0 +1,6 @@
+/* pages/history/history.wxss */
+.h1 {
+    margin: 2vh auto;
+    font-size: 5vw;
+    text-align: center;
+}
